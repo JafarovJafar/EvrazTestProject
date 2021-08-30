@@ -8,8 +8,7 @@ namespace EvrazTestProject
         {
             InitializeComponent();
 
-            Truck some = new Truck(1, 1, 1);
-
+            Truck some = new Truck(100, 12, 50, 1, 15, 1);
             some.Start();
         }
     }
