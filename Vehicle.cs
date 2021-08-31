@@ -109,8 +109,6 @@ namespace EvrazTestProject
 
                         RefreshStatus();
 
-                        Debug.WriteLine(_status);
-
                         if (_finished)
                         {
                             ChangeState(States.Finished);
