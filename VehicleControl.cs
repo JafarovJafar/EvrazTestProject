@@ -17,8 +17,6 @@ namespace EvrazTestProject
             _vehicle = vehicle;
             _vehicle.Updated += UpdateControl;
 
-            //ProgressBar.Maximum = (int)_vehicle.GoalDistance;
-
             TrackBar.Maximum = (int)_vehicle.GoalDistance;
 
             UpdatePropertiesTable();
@@ -26,10 +24,8 @@ namespace EvrazTestProject
             _updateAction = () =>
             {
                 TypeLabel.Text = _vehicle.Type;
-                //ProgressBar.Value = (int)_vehicle.ElapsedDistance;
 
                 OutputLabel.Visible = _vehicle.IsPunctured;
-                OutputLabel.Text = _vehicle.ElapsedDistance.ToString();
 
                 TrackBar.Value = (int)_vehicle.ElapsedDistance;
 

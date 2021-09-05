@@ -73,11 +73,14 @@ namespace EvrazTestProject
             // TrackBar
             // 
             this.TrackBar.AutoSize = false;
+            this.TrackBar.BackColor = System.Drawing.Color.Black;
             this.TrackBar.Enabled = false;
+            this.TrackBar.LargeChange = 0;
             this.TrackBar.Location = new System.Drawing.Point(10, 50);
             this.TrackBar.Margin = new System.Windows.Forms.Padding(5);
             this.TrackBar.Name = "TrackBar";
             this.TrackBar.Size = new System.Drawing.Size(532, 29);
+            this.TrackBar.SmallChange = 0;
             this.TrackBar.TabIndex = 4;
             // 
             // OutputLabel
@@ -92,6 +95,7 @@ namespace EvrazTestProject
             this.OutputLabel.TabIndex = 3;
             this.OutputLabel.Text = "ПРОКОЛ!!!";
             this.OutputLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.OutputLabel.Visible = false;
             // 
             // CloseButton
             // 
