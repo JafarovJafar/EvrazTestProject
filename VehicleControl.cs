@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace EvrazTestProject
@@ -7,6 +8,7 @@ namespace EvrazTestProject
     public partial class VehicleControl : UserControl
     {
         private Vehicle _vehicle;
+        private Action _updateAction;
 
         public VehicleControl(Vehicle vehicle)
         {
@@ -18,27 +20,33 @@ namespace EvrazTestProject
             ProgressBar.Maximum = (int)_vehicle.GoalDistance;
 
             UpdatePropertiesTable();
-        }
 
-        private void UpdateControl()
-        {
-            Action action = () =>
+            _updateAction = () =>
             {
                 TypeLabel.Text = _vehicle.Type;
                 ProgressBar.Value = (int)_vehicle.ElapsedDistance;
 
                 PunctureLabel.Visible = _vehicle.IsPunctured;
+                PunctureLabel.Text = _vehicle.ElapsedDistance.ToString();
 
-                //UpdatePropertiesTable();
+                Debug.WriteLine(_vehicle.IsPunctured);
+
+                if (_vehicle.IsPunctured)
+                {
+
+                }
             };
-            Invoke(action);
+        }
+
+        private void UpdateControl()
+        {
+            Invoke(_updateAction);
         }
 
         private void UpdatePropertiesTable()
         {
             foreach (KeyValuePair<string, object> property in _vehicle.AllProperties)
             {
-                PropertiesTable.Rows.Add(property.Key, property.Value);
                 PropertiesTable.Rows.Add(property.Key, property.Value);
             }
         }

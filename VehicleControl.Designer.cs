@@ -88,6 +88,8 @@ namespace EvrazTestProject
             this.ProgressBar.Margin = new System.Windows.Forms.Padding(5);
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(532, 29);
+            this.ProgressBar.Step = 1;
+            this.ProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.ProgressBar.TabIndex = 2;
             // 
             // CloseButton

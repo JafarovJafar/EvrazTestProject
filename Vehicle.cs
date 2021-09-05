@@ -123,7 +123,9 @@ namespace EvrazTestProject
                         if (_finished)
                         {
                             ChangeState(States.Finished);
+                            Updated?.Invoke();
                             OnFinish?.Invoke();
+                            return;
                         }
 
                         if (_stopwatch.Elapsed.Seconds > lastPunctureCheckTime)

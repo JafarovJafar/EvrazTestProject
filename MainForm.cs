@@ -14,7 +14,7 @@ namespace EvrazTestProject
 
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            Truck truck = new Truck(100, 10, 50, 0, 5, 100);
+            Truck truck = new Truck(100, 25, 50, 0, 5, 100);
 
             VehicleControl vc = new VehicleControl(truck);
             VehiclesContainer.Controls.Add(vc);
