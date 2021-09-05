@@ -17,23 +17,26 @@ namespace EvrazTestProject
             _vehicle = vehicle;
             _vehicle.Updated += UpdateControl;
 
-            ProgressBar.Maximum = (int)_vehicle.GoalDistance;
+            //ProgressBar.Maximum = (int)_vehicle.GoalDistance;
+
+            TrackBar.Maximum = (int)_vehicle.GoalDistance;
 
             UpdatePropertiesTable();
 
             _updateAction = () =>
             {
                 TypeLabel.Text = _vehicle.Type;
-                ProgressBar.Value = (int)_vehicle.ElapsedDistance;
+                //ProgressBar.Value = (int)_vehicle.ElapsedDistance;
 
-                PunctureLabel.Visible = _vehicle.IsPunctured;
-                PunctureLabel.Text = _vehicle.ElapsedDistance.ToString();
+                OutputLabel.Visible = _vehicle.IsPunctured;
+                OutputLabel.Text = _vehicle.ElapsedDistance.ToString();
 
-                Debug.WriteLine(_vehicle.IsPunctured);
+                TrackBar.Value = (int)_vehicle.ElapsedDistance;
 
-                if (_vehicle.IsPunctured)
+                if (_vehicle.Finished)
                 {
-
+                    OutputLabel.Visible = true;
+                    OutputLabel.Text = "ФИНИШ!!!";
                 }
             };
         }

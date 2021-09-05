@@ -31,8 +31,8 @@ namespace EvrazTestProject
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.PunctureLabel = new System.Windows.Forms.Label();
-            this.ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.TrackBar = new System.Windows.Forms.TrackBar();
+            this.OutputLabel = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
             this.TypeLabel = new System.Windows.Forms.Label();
             this.PropertiesTable = new System.Windows.Forms.DataGridView();
@@ -40,6 +40,7 @@ namespace EvrazTestProject
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutPanel1.SuspendLayout();
             this.MainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PropertiesTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,8 +59,8 @@ namespace EvrazTestProject
             // MainPanel
             // 
             this.MainPanel.BackColor = System.Drawing.Color.LightGray;
-            this.MainPanel.Controls.Add(this.PunctureLabel);
-            this.MainPanel.Controls.Add(this.ProgressBar);
+            this.MainPanel.Controls.Add(this.TrackBar);
+            this.MainPanel.Controls.Add(this.OutputLabel);
             this.MainPanel.Controls.Add(this.CloseButton);
             this.MainPanel.Controls.Add(this.TypeLabel);
             this.MainPanel.Location = new System.Drawing.Point(10, 10);
@@ -69,28 +70,28 @@ namespace EvrazTestProject
             this.MainPanel.Size = new System.Drawing.Size(552, 138);
             this.MainPanel.TabIndex = 1;
             // 
-            // PunctureLabel
+            // TrackBar
             // 
-            this.PunctureLabel.AutoSize = true;
-            this.PunctureLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PunctureLabel.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PunctureLabel.ForeColor = System.Drawing.Color.Red;
-            this.PunctureLabel.Location = new System.Drawing.Point(5, 101);
-            this.PunctureLabel.Name = "PunctureLabel";
-            this.PunctureLabel.Size = new System.Drawing.Size(140, 32);
-            this.PunctureLabel.TabIndex = 3;
-            this.PunctureLabel.Text = "ПРОКОЛ!!!";
-            this.PunctureLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TrackBar.AutoSize = false;
+            this.TrackBar.Enabled = false;
+            this.TrackBar.Location = new System.Drawing.Point(10, 50);
+            this.TrackBar.Margin = new System.Windows.Forms.Padding(5);
+            this.TrackBar.Name = "TrackBar";
+            this.TrackBar.Size = new System.Drawing.Size(532, 29);
+            this.TrackBar.TabIndex = 4;
             // 
-            // ProgressBar
+            // OutputLabel
             // 
-            this.ProgressBar.Location = new System.Drawing.Point(10, 50);
-            this.ProgressBar.Margin = new System.Windows.Forms.Padding(5);
-            this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(532, 29);
-            this.ProgressBar.Step = 1;
-            this.ProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.ProgressBar.TabIndex = 2;
+            this.OutputLabel.AutoSize = true;
+            this.OutputLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.OutputLabel.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.OutputLabel.ForeColor = System.Drawing.Color.Red;
+            this.OutputLabel.Location = new System.Drawing.Point(5, 101);
+            this.OutputLabel.Name = "OutputLabel";
+            this.OutputLabel.Size = new System.Drawing.Size(140, 32);
+            this.OutputLabel.TabIndex = 3;
+            this.OutputLabel.Text = "ПРОКОЛ!!!";
+            this.OutputLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CloseButton
             // 
@@ -162,6 +163,7 @@ namespace EvrazTestProject
             this.flowLayoutPanel1.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PropertiesTable)).EndInit();
             this.ResumeLayout(false);
 
@@ -171,12 +173,12 @@ namespace EvrazTestProject
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel MainPanel;
-        private System.Windows.Forms.ProgressBar ProgressBar;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Label TypeLabel;
         private System.Windows.Forms.DataGridView PropertiesTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
-        private System.Windows.Forms.Label PunctureLabel;
+        private System.Windows.Forms.Label OutputLabel;
+        private System.Windows.Forms.TrackBar TrackBar;
     }
 }
