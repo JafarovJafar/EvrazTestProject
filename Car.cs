@@ -1,4 +1,6 @@
-﻿namespace EvrazTestProject
+﻿using System.Collections.Generic;
+
+namespace EvrazTestProject
 {
     /// <summary>
     /// Легковая машина
@@ -6,10 +8,19 @@
     class Car : Vehicle
     {
         #region Properties
+        public override string Type => "Автомобиль";
         /// <summary>
         /// Количество пассажиров
         /// </summary>
         public int PassengersCount => _passengersCount;
+        /// <summary>
+        /// Все характеристики транспорта
+        /// </summary>
+        public override Dictionary<string, object> AllProperties => new Dictionary<string, object> {
+            { "Скорость", _speed},
+            { "Шанс прокола шины", _punctureChance},
+            { "Количество пассажиров", _passengersCount},
+        };
         #endregion
 
         private int _passengersCount;

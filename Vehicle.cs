@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
@@ -7,9 +8,10 @@ namespace EvrazTestProject
     /// <summary>
     /// Абстрактный класс транспорта
     /// </summary>
-    abstract class Vehicle
+    public abstract class Vehicle
     {
         #region Properties
+        public abstract string Type { get; }
         /// <summary>
         /// Скорость
         /// </summary>
@@ -21,11 +23,15 @@ namespace EvrazTestProject
         /// <summary>
         /// Целевое расстояние
         /// </summary>
-        protected float GoalDistance => _goalDistance;
+        public float GoalDistance => _goalDistance;
         /// <summary>
         /// Шанс прокола колеса
         /// </summary>
         public float PunctureChance => _punctureChance;
+        /// <summary>
+        /// Проколота шина
+        /// </summary>
+        public bool IsPunctured => _currentState == States.Punctured;
         /// <summary>
         /// Закончил движение
         /// </summary>
@@ -34,6 +40,10 @@ namespace EvrazTestProject
         /// Статус
         /// </summary>
         public string Status => _status;
+        /// <summary>
+        /// Все характеристики транспорта
+        /// </summary>
+        public abstract Dictionary<string, object> AllProperties { get; }
         #endregion
 
         protected enum States
@@ -58,7 +68,8 @@ namespace EvrazTestProject
         private Thread _driveThread;
 
         public delegate void VoidDelegate();
-        public event VoidDelegate OnFinish;
+        public event VoidDelegate OnFinish; // неправильный нейминг, но Finished уже занято
+        public event VoidDelegate Updated;
 
         public virtual void RefreshStatus()
         {
@@ -112,7 +123,9 @@ namespace EvrazTestProject
                         if (_finished)
                         {
                             ChangeState(States.Finished);
+                            Updated?.Invoke();
                             OnFinish?.Invoke();
+                            return;
                         }
 
                         if (_stopwatch.Elapsed.Seconds > lastPunctureCheckTime)
@@ -130,6 +143,8 @@ namespace EvrazTestProject
                                 ChangeState(States.Punctured);
                             }
                         }
+
+                        Updated?.Invoke();
                         break;
 
                     case States.Punctured:
@@ -144,6 +159,13 @@ namespace EvrazTestProject
                         break;
                 }
             }
+        }
+    
+        public void Reset()
+        {
+            _elapsedDistance = 0;
+            _stopwatch.Reset();
+            _finished = false;
         }
     }
 }
