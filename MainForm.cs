@@ -22,8 +22,6 @@ namespace EvrazTestProject
 
         private Stopwatch _stopwatch = new Stopwatch();
 
-        private bool _finished;
-
         private Action _openRatingAction;
 
         private bool _inited;
@@ -47,7 +45,6 @@ namespace EvrazTestProject
 
                 _ratingForm.RestartClicked += () =>
                 {
-                    Debug.WriteLine("CLICKED");
                     _ratingForm.Close();
                     Restart();
                 };
@@ -123,7 +120,6 @@ namespace EvrazTestProject
 
                 if (_vehiclesRating.Count == _vehicles.Count)
                 {
-                    _finished = true;
                     Invoke(_openRatingAction);
                 }
             };
@@ -141,15 +137,6 @@ namespace EvrazTestProject
 
         private void StartRaceButton_Click(object sender, EventArgs e)
         {
-            if (_inited)
-            {
-                Restart();
-            }
-            else
-            {
-                _inited = true;
-            }
-
             if (_vehicles.Count > 0)
             {
                 _stopwatch.Start();
@@ -163,8 +150,6 @@ namespace EvrazTestProject
 
         private void Restart()
         {
-            _finished = false;
-
             _vehiclesRating = new List<VehicleRating>();
 
             _stopwatch.Reset();
