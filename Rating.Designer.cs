@@ -32,6 +32,7 @@ namespace EvrazTestProject
             this.RatingTable = new System.Windows.Forms.DataGridView();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RestartButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.RatingTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@ namespace EvrazTestProject
             this.RatingTable.RowHeadersVisible = false;
             this.RatingTable.RowHeadersWidth = 51;
             this.RatingTable.RowTemplate.Height = 29;
-            this.RatingTable.Size = new System.Drawing.Size(462, 333);
+            this.RatingTable.Size = new System.Drawing.Size(256, 255);
             this.RatingTable.TabIndex = 0;
             // 
             // Type
@@ -69,14 +70,25 @@ namespace EvrazTestProject
             this.Time.ReadOnly = true;
             this.Time.Width = 125;
             // 
+            // RestartButton
+            // 
+            this.RestartButton.Location = new System.Drawing.Point(10, 297);
+            this.RestartButton.Name = "RestartButton";
+            this.RestartButton.Size = new System.Drawing.Size(256, 29);
+            this.RestartButton.TabIndex = 1;
+            this.RestartButton.Text = "Рестарт";
+            this.RestartButton.UseVisualStyleBackColor = true;
+            this.RestartButton.Click += new System.EventHandler(this.RestartButton_Click);
+            // 
             // Rating
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 353);
+            this.ClientSize = new System.Drawing.Size(282, 353);
+            this.Controls.Add(this.RestartButton);
             this.Controls.Add(this.RatingTable);
-            this.MaximumSize = new System.Drawing.Size(500, 400);
-            this.MinimumSize = new System.Drawing.Size(500, 400);
+            this.MaximumSize = new System.Drawing.Size(300, 400);
+            this.MinimumSize = new System.Drawing.Size(300, 400);
             this.Name = "Rating";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Rating";
@@ -90,5 +102,6 @@ namespace EvrazTestProject
         private System.Windows.Forms.DataGridView RatingTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
+        private System.Windows.Forms.Button RestartButton;
     }
 }

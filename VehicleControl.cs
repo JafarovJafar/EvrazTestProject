@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace EvrazTestProject
 {
     public partial class VehicleControl : UserControl
     {
+        public Vehicle Vehicle => _vehicle;
+
         private Vehicle _vehicle;
         private Action _updateAction;
+
+        public delegate void VoidDelegate();
+        public VoidDelegate CloseClicked;
 
         public VehicleControl(Vehicle vehicle)
         {
@@ -48,6 +52,19 @@ namespace EvrazTestProject
             {
                 PropertiesTable.Rows.Add(property.Key, property.Value);
             }
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            CloseClicked?.Invoke();
+        }
+
+        public void Reset()
+        {
+            OutputLabel.Visible = false;
+            OutputLabel.Text = "ПРОКОЛ";
+
+            TrackBar.Value = 0;
         }
     }
 }

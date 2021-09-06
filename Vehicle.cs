@@ -160,5 +160,12 @@ namespace EvrazTestProject
                 }
             }
         }
+    
+        public void Reset()
+        {
+            _elapsedDistance = 0;
+            _stopwatch.Reset();
+            _finished = false;
+        }
     }
 }

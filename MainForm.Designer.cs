@@ -290,7 +290,6 @@ namespace EvrazTestProject
         }
 
         #endregion
-        private VehicleControl vehicleControl;
         private System.Windows.Forms.FlowLayoutPanel VehiclesContainer;
         private System.Windows.Forms.Panel SidePanel;
         private System.Windows.Forms.Button AddVehicleButton;

@@ -109,6 +109,7 @@ namespace EvrazTestProject
             this.CloseButton.TabIndex = 1;
             this.CloseButton.Text = "Х";
             this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // TypeLabel
             // 

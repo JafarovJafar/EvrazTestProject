@@ -7,6 +7,8 @@ namespace EvrazTestProject
 {
     public partial class MainForm : Form
     {
+        private Rating _ratingForm;
+
         private List<Vehicle> _vehicles = new List<Vehicle>();
 
         private List<VehicleRating> _vehiclesRating = new List<VehicleRating>();
@@ -32,17 +34,6 @@ namespace EvrazTestProject
                 TypeComboBox.Items.Add(type);
             }
             TypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
-
-            /*
-            Truck truck = new Truck(100, 25, 50, 0, 5, 100);
-
-            VehicleControl vc = new VehicleControl(truck);
-            VehiclesContainer.Controls.Add(vc);
-
-            truck.Start();
-            */
         }
 
         private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,7 +75,7 @@ namespace EvrazTestProject
                         float.Parse(PunctureChanceTextBox.Text),
                         int.Parse(MinPunctureTimeTextBox.Text),
                         int.Parse(MaxPunctureTimeTextBox.Text),
-                        float.Parse(PassengersCountTextBox.Text));
+                        float.Parse(CargoWeightTextBox.Text));
 
                     createdVehicle = newTruck;
 
@@ -112,13 +103,29 @@ namespace EvrazTestProject
 
                 if (_vehiclesRating.Count == _vehicles.Count)
                 {
-                    Rating rating = new Rating(_vehiclesRating);
-                    rating.ShowDialog();
+                    _ratingForm = new Rating(_vehiclesRating);
+                    //Application.Run(_ratingForm);
+                    _ratingForm.RestartClicked += () =>
+                    {
+                        Debug.WriteLine("CLICKED");
+                        //_ratingForm.Close();
+                        //rating.Dispose();
+                        Restart();
+                    };
+
+                    _ratingForm.Show();
                 }
             };
 
-            VehicleControl vc = new VehicleControl(createdVehicle);
-            VehiclesContainer.Controls.Add(vc);
+            VehicleControl vehicleControl = new VehicleControl(createdVehicle);
+            VehiclesContainer.Controls.Add(vehicleControl);
+
+            vehicleControl.CloseClicked += () =>
+            {
+                _vehicles.Remove(vehicleControl.Vehicle);
+                VehiclesContainer.Controls.Remove(vehicleControl);
+                vehicleControl.Dispose();
+            };
         }
 
         private void StartRaceButton_Click(object sender, EventArgs e)
@@ -131,6 +138,14 @@ namespace EvrazTestProject
                 {
                     vehicle.Start();
                 }
+            }
+        }
+
+        private void Restart()
+        {
+            foreach(VehicleControl vehicle in VehiclesContainer.Controls)
+            {
+                vehicle.Reset();
             }
         }
     }
