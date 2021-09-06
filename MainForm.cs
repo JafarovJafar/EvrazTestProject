@@ -22,6 +22,12 @@ namespace EvrazTestProject
 
         private Stopwatch _stopwatch = new Stopwatch();
 
+        private bool _finished;
+
+        private Action _openRatingAction;
+
+        private bool _inited;
+
         public MainForm()
         {
             InitializeComponent();
@@ -34,6 +40,20 @@ namespace EvrazTestProject
                 TypeComboBox.Items.Add(type);
             }
             TypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            _openRatingAction = () =>
+            {
+                _ratingForm = new Rating(_vehiclesRating);
+
+                _ratingForm.RestartClicked += () =>
+                {
+                    Debug.WriteLine("CLICKED");
+                    _ratingForm.Close();
+                    Restart();
+                };
+
+                _ratingForm.ShowDialog();
+            };
         }
 
         private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -103,17 +123,8 @@ namespace EvrazTestProject
 
                 if (_vehiclesRating.Count == _vehicles.Count)
                 {
-                    _ratingForm = new Rating(_vehiclesRating);
-                    //Application.Run(_ratingForm);
-                    _ratingForm.RestartClicked += () =>
-                    {
-                        Debug.WriteLine("CLICKED");
-                        //_ratingForm.Close();
-                        //rating.Dispose();
-                        Restart();
-                    };
-
-                    _ratingForm.Show();
+                    _finished = true;
+                    Invoke(_openRatingAction);
                 }
             };
 
@@ -130,6 +141,15 @@ namespace EvrazTestProject
 
         private void StartRaceButton_Click(object sender, EventArgs e)
         {
+            if (_inited)
+            {
+                Restart();
+            }
+            else
+            {
+                _inited = true;
+            }
+
             if (_vehicles.Count > 0)
             {
                 _stopwatch.Start();
@@ -143,9 +163,16 @@ namespace EvrazTestProject
 
         private void Restart()
         {
+            _finished = false;
+
+            _vehiclesRating = new List<VehicleRating>();
+
+            _stopwatch.Reset();
+
             foreach(VehicleControl vehicle in VehiclesContainer.Controls)
             {
                 vehicle.Reset();
+                vehicle.Vehicle.Reset();
             }
         }
     }
