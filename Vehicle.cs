@@ -86,7 +86,7 @@ namespace EvrazTestProject
         }
 
         public void Start()
-        {   
+        {
             _driveThread = new Thread(Tick);
             _driveThread.IsBackground = true;
             _driveThread.Start();
